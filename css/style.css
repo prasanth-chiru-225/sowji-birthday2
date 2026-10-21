@@ -1,0 +1,1499 @@
+/**
+ * ============================================================================
+ * SOWJI'S BIRTHDAY CELEBRATION - MASTER STYLESHEET
+ * ============================================================================
+ * Premium luxury editorial aesthetic, warm champagne & rose gold tones,
+ * glassmorphism, 3D interactive components, and smooth micro-animations.
+ */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & THEMES
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color Palette - Warm Ivory & Rose Gold (Light) */
+  --bg-primary: #faf6f0;
+  --bg-secondary: #f3ece1;
+  --bg-tertiary: #ede3d5;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg-solid: #ffffff;
+  --text-primary: #211c1d;
+  --text-secondary: #6e6566;
+  --text-muted: #998e90;
+
+  --gold: #b38137;
+  --gold-light: #fef3c7;
+  --gold-glow: rgba(179, 129, 55, 0.35);
+  --gold-gradient: linear-gradient(135deg, #b38137, #d97706, #ec4899);
+
+  --rose: #e11d48;
+  --rose-soft: #ffe4e6;
+  --rose-gradient: linear-gradient(135deg, #f43f5e, #fb7185, #fda4af);
+
+  --border-light: rgba(33, 28, 29, 0.08);
+  --border-card: rgba(179, 129, 55, 0.18);
+
+  --shadow-sm: 0 4px 12px rgba(45, 30, 20, 0.05);
+  --shadow-md: 0 12px 30px -10px rgba(45, 30, 20, 0.1);
+  --shadow-lg: 0 25px 60px -15px rgba(45, 30, 20, 0.16);
+  --shadow-glow: 0 0 35px rgba(245, 158, 11, 0.25);
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --nav-height: 70px;
+  --border-radius-card: 24px;
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+/* Dark Theme - Midnight Velvet & Starlight Gold */
+[data-theme="dark"] {
+  --bg-primary: #0e0c12;
+  --bg-secondary: #16121d;
+  --bg-tertiary: #1f1929;
+  --card-bg: rgba(24, 20, 32, 0.82);
+  --card-bg-solid: #1b1625;
+  --text-primary: #fcf8f2;
+  --text-secondary: #aca0b6;
+  --text-muted: #796f83;
+
+  --gold: #e5b364;
+  --gold-light: #352614;
+  --gold-glow: rgba(229, 179, 100, 0.4);
+  --gold-gradient: linear-gradient(135deg, #f59e0b, #fb7185, #c084fc);
+
+  --rose: #fb7185;
+  --rose-soft: #38121f;
+  --rose-gradient: linear-gradient(135deg, #fb7185, #f43f5e, #be123c);
+
+  --border-light: rgba(252, 248, 242, 0.08);
+  --border-card: rgba(229, 179, 100, 0.22);
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 40px rgba(229, 179, 100, 0.3);
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 20px);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: var(--gold-gradient);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* Background Particle Canvas */
+canvas#fx {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Eyebrow Label */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+.section-header h2 {
+  font-size: clamp(34px, 5.5vw, 56px);
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+.section-header p {
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+/* Standard Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-smooth);
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--gold-gradient);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -8px var(--gold);
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 35px -10px var(--gold);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  background: var(--card-bg-solid);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   3. INTRO OVERLAY (FIRST GESTURE & AUDIO ACTIVATION)
+   -------------------------------------------------------------------------- */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  transition: opacity 0.9s var(--transition-smooth), visibility 0.9s ease;
+}
+#intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-content {
+  max-width: 500px;
+  animation: floatUp 1.2s var(--transition-smooth);
+}
+.intro-envelope-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: heartPulse 2s infinite ease-in-out;
+}
+.intro-content h1 {
+  font-size: clamp(38px, 8vw, 68px);
+  font-style: italic;
+  margin: 12px 0 16px;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.intro-content p {
+  font-size: 18px;
+  margin-bottom: 32px;
+  color: var(--text-secondary);
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVIGATION BAR & THEME SWITCH
+   -------------------------------------------------------------------------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(var(--bg-primary), 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+nav .container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-brand b {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-style: italic;
+  color: var(--text-primary);
+}
+.nav-sparkle {
+  color: var(--gold);
+  font-size: 18px;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover {
+  color: var(--gold);
+}
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icon-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.icon-btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. HERO SECTION & LIVE FRIENDSHIP COUNTER
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  text-align: center;
+  padding: 90px 0 80px;
+  background: radial-gradient(60% 60% at 50% 15%, var(--gold-glow), transparent 75%);
+  overflow: hidden;
+}
+.hero-badge-wrap {
+  margin-bottom: 20px;
+}
+.hero-date-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: var(--gold-light);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-card);
+}
+.hero-title {
+  font-size: clamp(48px, 11vw, 110px);
+  font-weight: 500;
+  line-height: 1.02;
+  margin-bottom: 24px;
+}
+.hero-title .name-highlight {
+  font-style: italic;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.08em;
+}
+.hero-typewriter-wrap {
+  min-height: 72px;
+  max-width: 680px;
+  margin: 0 auto 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-typewriter {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3.5vw, 32px);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+/* Friendship Counter Card */
+.friendship-counter-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--shadow-md);
+}
+.counter-label {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.counter-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.counter-unit .num {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 4.5vw, 38px);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.counter-unit .label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SECTION 01 · WAX-SEALED ENVELOPE & LETTER
+   -------------------------------------------------------------------------- */
+.section-letter {
+  padding: 100px 0;
+}
+.envelope-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  perspective: 1200px;
+}
+.sealed-envelope {
+  position: relative;
+  background: var(--card-bg-solid);
+  border: 1px solid var(--border-card);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 50px 40px;
+  cursor: pointer;
+  transition: all 0.5s var(--transition-smooth);
+}
+.envelope-flap-decor {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.wax-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #be123c, #881337);
+  box-shadow: 0 8px 24px rgba(136, 19, 55, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wax-seal:hover {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 12px 30px rgba(136, 19, 55, 0.55);
+}
+.seal-prompt {
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--gold);
+  font-weight: 600;
+}
+.sealed-envelope.opened .wax-seal {
+  transform: scale(0.6) translateY(-20px);
+  opacity: 0;
+}
+
+/* Unfolded Letter Body */
+.unfolded-letter {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s var(--transition-smooth);
+}
+.unfolded-letter.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.letter-parchment {
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: clamp(30px, 6vw, 60px);
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.letter-parchment::before {
+  content: "“";
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  font-family: var(--font-serif);
+  font-size: 140px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.letter-heading {
+  font-size: clamp(28px, 4vw, 36px);
+  color: var(--gold);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+.letter-para {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.5vw, 24px);
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+.letter-signature-block {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-card);
+}
+.letter-closing {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+.letter-signoff {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 38px);
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 4px;
+  font-weight: 600;
+}
+.letter-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTION 02 · BENTO GRID (REASONS WHY SHE'S ONE OF A KIND)
+   -------------------------------------------------------------------------- */
+.section-reasons {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+}
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.bento-card {
+  grid-column: span 2;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-card);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.bento-card.bento-wide {
+  grid-column: span 3;
+}
+.bento-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+.bento-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.bento-num {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+}
+.bento-icon {
+  font-size: 28px;
+}
+.bento-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.bento-title {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.bento-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .bento-card, .bento-card.bento-wide {
+    grid-column: span 6;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. SECTION 03 · JOURNEY TIMELINE
+   -------------------------------------------------------------------------- */
+.section-journey {
+  padding: 100px 0;
+}
+.timeline-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+.timeline-wrap::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 32px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), var(--rose), transparent);
+}
+.timeline-step {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline-marker {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--card-bg-solid);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.timeline-step:hover .timeline-marker {
+  transform: scale(1.15) rotate(8deg);
+  border-color: var(--rose);
+}
+.timeline-content {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 28px 30px;
+  flex-grow: 1;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s ease;
+}
+.timeline-step:hover .timeline-content {
+  transform: translateX(6px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-md);
+}
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.timeline-year {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+}
+.timeline-badge {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--rose-soft);
+  color: var(--rose);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.timeline-title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.timeline-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .timeline-wrap::before {
+    left: 20px;
+  }
+  .timeline-marker {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .timeline-step {
+    gap: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. SECTION 04 · INTERACTIVE 3D CAKE & CANDLE BLOW
+   -------------------------------------------------------------------------- */
+.section-cake {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+.cake-stage {
+  max-width: 500px;
+  margin: 0 auto 36px;
+  position: relative;
+  cursor: pointer;
+  padding: 40px 0;
+}
+.cake-3d {
+  position: relative;
+  display: inline-block;
+  width: 240px;
+  perspective: 600px;
+}
+
+/* Cake Layers */
+.cake-tier {
+  position: relative;
+  margin: -4px auto 0;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+.tier-3 {
+  width: 140px;
+  height: 52px;
+  background: linear-gradient(135deg, #f43f5e, #be123c);
+  z-index: 3;
+}
+.tier-2 {
+  width: 190px;
+  height: 56px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-bottom: 4px solid #f59e0b;
+  z-index: 2;
+}
+.tier-1 {
+  width: 240px;
+  height: 60px;
+  background: linear-gradient(135deg, #f43f5e, #be123c);
+  border-bottom: 5px solid #9f1239;
+  z-index: 1;
+}
+
+/* Frosting Drips */
+.frosting-drips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: radial-gradient(circle at 10px 0px, transparent 8px, #fff1f2 9px);
+  background-size: 20px 14px;
+}
+
+/* Candles */
+.candles-group {
+  position: absolute;
+  top: -42px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  z-index: 4;
+}
+.candle-unit {
+  position: relative;
+  width: 10px;
+  height: 44px;
+  background: repeating-linear-gradient(45deg, #ffffff, #ffffff 4px, #f59e0b 4px, #f59e0b 8px);
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.candle-wick {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: #333;
+}
+.candle-flame {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 26px;
+  background: radial-gradient(#ffffff 15%, #fde047 35%, #f97316 70%, transparent 80%);
+  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+  box-shadow: 0 0 20px #f59e0b, 0 0 40px #fbbf24;
+  transform-origin: 50% 90%;
+  animation: flicker 0.35s infinite alternate ease-in-out;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.candle-unit:nth-child(2) .candle-flame {
+  animation-delay: 0.12s;
+}
+.candle-unit:nth-child(3) .candle-flame {
+  animation-delay: 0.22s;
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) rotate(-2deg) scale(0.96, 1.02); }
+  100% { transform: translateX(-50%) rotate(3deg) scale(1.04, 0.98); }
+}
+
+/* Candle Blown Out State */
+.candles-out .candle-flame {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.2);
+  animation: none;
+}
+.smoke-puff {
+  display: none;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(180, 180, 180, 0.6);
+  border-radius: 50%;
+}
+.candles-out .smoke-puff {
+  display: block;
+  animation: smokeWisp 1.2s ease-out forwards;
+}
+@keyframes smokeWisp {
+  0% { opacity: 0.8; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-80%, -40px) scale(3.5); filter: blur(4px); }
+}
+
+/* Wish Status Message */
+#wish-status {
+  min-height: 50px;
+  margin-top: 24px;
+}
+.wish-success-badge {
+  display: inline-block;
+  padding: 16px 28px;
+  background: var(--card-bg-solid);
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  animation: popIn 0.6s var(--transition-smooth);
+}
+.wish-success-badge strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.wish-success-badge p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --------------------------------------------------------------------------
+   10. SECTION 05 · POLAROID MEMORY WALL
+   -------------------------------------------------------------------------- */
+.section-polaroids {
+  padding: 100px 0;
+}
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  justify-content: center;
+}
+.polaroid-wrapper {
+  perspective: 1000px;
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform 0.4s ease, z-index 0.4s;
+}
+.polaroid-wrapper:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 10;
+}
+.polaroid-card {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--transition-smooth);
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+.polaroid-card.flipped {
+  transform: rotateY(180deg);
+}
+.polaroid-front, .polaroid-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 16px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .polaroid-front {
+  background: #1f1b29;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 24px;
+  background: rgba(254, 215, 170, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+  z-index: 5;
+}
+.polaroid-photo-frame {
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.polaroid-art-icon {
+  font-size: 54px;
+}
+.polaroid-date-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+.polaroid-caption {
+  margin-top: 14px;
+  text-align: center;
+}
+.polaroid-caption h4 {
+  font-size: 19px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.tap-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.polaroid-back {
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 24px;
+}
+.polaroid-back-inner {
+  color: #1f1b29;
+}
+.polaroid-back-inner p {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  color: #1f1b29;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.quote-mark {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  line-height: 1;
+  color: var(--gold);
+}
+.polaroid-heart {
+  font-size: 22px;
+}
+
+/* --------------------------------------------------------------------------
+   11. SECTION 06 · WISH JAR (INTERACTIVE AFFIRMATIONS)
+   -------------------------------------------------------------------------- */
+.section-jar {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+.jar-container {
+  max-width: 540px;
+  margin: 0 auto;
+}
+.glass-jar {
+  display: inline-block;
+  font-size: 84px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 15px 25px rgba(245, 158, 11, 0.25));
+}
+.glass-jar:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+.shake-jar {
+  animation: shake 0.4s ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+.active-note-card {
+  margin-top: 36px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg-solid);
+  border: 1px solid var(--border-card);
+  border-radius: var(--border-radius-card);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s var(--transition-smooth);
+}
+.active-note-card.show-note {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.note-counter-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.active-note-text {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3.2vw, 28px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. SECTION 07 · 3D GIFT BOX & VIP VOUCHER UNBOXING
+   -------------------------------------------------------------------------- */
+.section-gift {
+  padding: 100px 0;
+  text-align: center;
+}
+.gift-stage {
+  max-width: 400px;
+  margin: 0 auto 36px;
+}
+.gift-box-3d {
+  position: relative;
+  width: 170px;
+  height: 150px;
+  margin: 0 auto;
+  cursor: pointer;
+  animation: bobGift 2.6s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+.gift-box-3d:hover {
+  transform: scale(1.08);
+}
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 105px;
+  background: linear-gradient(135deg, #e11d48, #9f1239);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(159, 18, 57, 0.4);
+}
+.gift-lid {
+  position: absolute;
+  top: 14px;
+  left: -8px;
+  right: -8px;
+  height: 40px;
+  background: linear-gradient(135deg, #fb7185, #e11d48);
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.7s var(--transition-smooth), opacity 0.7s ease;
+  z-index: 2;
+}
+.gift-ribbon-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  background: linear-gradient(180deg, #fde047, #d97706);
+  z-index: 3;
+}
+.gift-bow {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 38px;
+  z-index: 4;
+}
+
+@keyframes bobGift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Gift Unwrapped State */
+.gift-box-3d.unwrapped .gift-lid {
+  transform: translateY(-80px) rotate(-22deg) scale(0.9);
+  opacity: 0;
+}
+.gift-box-3d.unwrapped {
+  animation: none;
+}
+
+/* VIP Golden Voucher Reveal Card */
+.voucher-reveal-card {
+  display: none;
+  max-width: 680px;
+  margin: 40px auto 0;
+  background: var(--card-bg-solid);
+  border: 2px solid var(--gold);
+  border-radius: var(--border-radius-card);
+  padding: clamp(32px, 5vw, 48px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.voucher-reveal-card.revealed {
+  display: block;
+  animation: popIn 0.8s var(--transition-smooth);
+}
+.voucher-reveal-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at top right, var(--gold-glow), transparent 70%);
+  pointer-events: none;
+}
+.vip-voucher-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 1px dashed var(--border-card);
+  padding-bottom: 24px;
+}
+.vip-crown {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+.vip-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-light);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.vip-voucher-header h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.vip-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.vip-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.vip-perk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+.vip-perk-item .perk-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.vip-voucher-footer {
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.vip-code-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.vip-code {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--bg-secondary);
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-card);
+  letter-spacing: 0.08em;
+}
+.vip-redeem-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   13. FLOATING MUSIC CONTROLLER WIDGET
+   -------------------------------------------------------------------------- */
+#floating-music-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  border-radius: 999px;
+  padding: 8px 16px 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+#floating-music-widget:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.music-toggle-btn {
+  background: var(--gold-gradient);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--gold-glow);
+}
+.audio-visualizer-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+}
+.visualizer-bar {
+  width: 3px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 3px;
+  transition: height 0.08s ease;
+}
+.music-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.volume-slider-wrap {
+  display: flex;
+  align-items: center;
+}
+#music-volume-slider {
+  width: 60px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  #floating-music-widget .music-info-label,
+  #floating-music-widget .volume-slider-wrap {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. SCROLL REVEAL ANIMATIONS
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s ease, transform 0.9s var(--transition-smooth);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   15. FOOTER & KEEPSAKE CALLOUT
+   -------------------------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 80px 24px 60px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  position: relative;
+}
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.footer-credit {
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.footer-credit span {
+  color: var(--gold);
+  font-weight: 600;
+}
+.footer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   16. ACCESSIBILITY & PRINT STYLES
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media print {
+  #intro-overlay, nav, #floating-music-widget, canvas#fx, .btn, .icon-btn, .washi-tape {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .letter-parchment, .voucher-reveal-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  .unfolded-letter {
+    display: block !important;
+    opacity: 1 !important;
+  }
+}
