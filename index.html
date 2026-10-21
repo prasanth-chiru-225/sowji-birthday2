@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday, Sowji ✨ | A Special Celebration</title>
+  
+  <!-- SEO & Social Sharing Meta Tags -->
+  <meta name="description" content="A special birthday website celebrating Sowji — filled with love, laughter, shared memories, and heartfelt wishes.">
+  <meta name="theme-color" content="#faf6f0">
+  <meta property="og:title" content="Happy Birthday, Sowji ✨">
+  <meta property="og:description" content="Made with love for the best friend anyone could ever ask for.">
+  <meta property="og:type" content="website">
+
+  <!-- Typography: Cormorant Garamond (Editorial Serif) & Inter (Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- Intro Gestural Experience Overlay -->
+  <div id="intro-overlay" role="dialog" aria-modal="true" aria-labelledby="intro-for-name">
+    <div class="intro-content">
+      <div class="intro-envelope-icon" aria-hidden="true">💌</div>
+      <span class="eyebrow">A Special Dedication</span>
+      <h1 id="intro-for-name">For Sowji</h1>
+      <p>Handcrafted with love just for you. Turn your volume on for the best experience.</p>
+      <button class="btn btn-primary" id="open-experience-btn" aria-label="Open birthday experience">
+        <span>Open With Love ✨</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sticky Luxury Navigation -->
+  <nav aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-brand">
+        <b id="nav-brand-name">Sowji</b>
+        <span class="nav-sparkle">✨</span>
+      </div>
+
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="#letter">Letter</a></li>
+          <li><a href="#reasons">Reasons</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#cake">Make a Wish</a></li>
+          <li><a href="#memories">Memories</a></li>
+          <li><a href="#jar">Wish Jar</a></li>
+          <li><a href="#surprise">Surprise</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+            <span class="theme-icon">🌓</span>
+          </button>
+          <button class="icon-btn music-toggle-btn" aria-label="Toggle ambient music" title="Toggle ambient music">
+            <span class="music-icon">🎵</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="container">
+      <div class="hero-badge-wrap">
+        <span class="hero-date-badge" id="hero-date-badge">24 October 2026</span>
+      </div>
+
+      <h1 class="hero-title">
+        Happy Birthday,<br>
+        <span class="name-highlight" id="hero-name-highlight">Sowji ✨</span>
+      </h1>
+
+      <div class="hero-typewriter-wrap">
+        <p class="hero-typewriter" id="hero-typewriter"></p>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#letter" class="btn btn-primary">Read Your Letter ↓</a>
+        <a href="#cake" class="btn btn-ghost">Blow The Candles 🎂</a>
+      </div>
+
+      <!-- Live Friendship Milestone Counter -->
+      <div class="friendship-counter-card reveal-on-scroll" id="friendship-counter">
+        <span class="counter-label">Celebrating Our Friendship Milestones Together</span>
+        <div class="counter-grid">
+          <div class="counter-unit">
+            <span class="num" id="count-days">--</span>
+            <span class="label">Days</span>
+          </div>
+          <div class="counter-unit">
+            <span class="num" id="count-hours">--</span>
+            <span class="label">Hours</span>
+          </div>
+          <div class="counter-unit">
+            <span class="num" id="count-mins">--</span>
+            <span class="label">Minutes</span>
+          </div>
+          <div class="counter-unit">
+            <span class="num" id="count-secs">--</span>
+            <span class="label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 01: Wax-Sealed Letter -->
+    <section id="letter" class="section-letter" aria-labelledby="heading-letter">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">01 · A Letter To You</span>
+          <h2 id="heading-letter">For You, With All My Love</h2>
+          <p>A few words from the bottom of my heart on your special day.</p>
+        </div>
+
+        <div class="envelope-wrap reveal-on-scroll">
+          <div class="sealed-envelope" id="sealed-envelope" role="button" tabindex="0" aria-label="Open wax sealed letter">
+            <div class="envelope-flap-decor">
+              <div class="wax-seal" id="break-seal-btn" title="Tap to break seal">S</div>
+              <p class="seal-prompt">Tap the wax seal to unfold your letter ✉️</p>
+            </div>
+
+            <!-- Unfolded Letter Parchment -->
+            <div class="unfolded-letter" id="unfolded-letter">
+              <div class="letter-parchment">
+                <div id="letter-body"></div>
+                <div class="letter-actions">
+                  <button class="btn btn-ghost" id="fold-letter-btn">Fold Letter ↺</button>
+                  <a href="#cake" class="btn btn-primary">Make a Wish Next →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02: Bento Grid Reasons -->
+    <section id="reasons" class="section-reasons" aria-labelledby="heading-reasons">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">02 · Six Core Truths</span>
+          <h2 id="heading-reasons">Why You’re Truly One of a Kind</h2>
+          <p>Just a handful of the infinite reasons I’m forever grateful to have you in my life.</p>
+        </div>
+
+        <div class="bento-grid reveal-on-scroll" id="reasons-bento-grid"></div>
+      </div>
+    </section>
+
+    <!-- Section 03: Journey Timeline -->
+    <section id="journey" class="section-journey" aria-labelledby="heading-journey">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">03 · Chapters of Us</span>
+          <h2 id="heading-journey">Our Story So Far</h2>
+          <p>From the first hello to unforgettable adventures, and every memory in between.</p>
+        </div>
+
+        <div class="timeline-wrap reveal-on-scroll" id="journey-timeline"></div>
+      </div>
+    </section>
+
+    <!-- Section 04: Interactive 3D Cake & Candle Blow -->
+    <section id="cake" class="section-cake" aria-labelledby="heading-cake">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">04 · Birthday Ritual</span>
+          <h2 id="heading-cake">Make a Silent Wish</h2>
+          <p>Close your eyes, make the deepest wish in your heart, and blow out the candles!</p>
+        </div>
+
+        <div class="cake-stage reveal-on-scroll" id="cake-container" role="button" tabindex="0" aria-label="Tap to blow out candles">
+          <div class="cake-3d">
+            <!-- 3 Glowing Candles -->
+            <div class="candles-group">
+              <div class="candle-unit">
+                <div class="candle-wick"></div>
+                <div class="candle-flame"></div>
+                <div class="smoke-puff"></div>
+              </div>
+              <div class="candle-unit">
+                <div class="candle-wick"></div>
+                <div class="candle-flame"></div>
+                <div class="smoke-puff"></div>
+              </div>
+              <div class="candle-unit">
+                <div class="candle-wick"></div>
+                <div class="candle-flame"></div>
+                <div class="smoke-puff"></div>
+              </div>
+            </div>
+
+            <!-- Tier 3 (Top) -->
+            <div class="cake-tier tier-3">
+              <div class="frosting-drips"></div>
+            </div>
+
+            <!-- Tier 2 (Middle) -->
+            <div class="cake-tier tier-2">
+              <div class="frosting-drips"></div>
+            </div>
+
+            <!-- Tier 1 (Base) -->
+            <div class="cake-tier tier-1">
+              <div class="frosting-drips"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cake-controls reveal-on-scroll">
+          <button class="btn btn-primary" id="blow-candle-btn">Blow Out Candles 💨</button>
+          <button class="btn btn-ghost" id="relight-candle-btn" style="display: none;">Re-light Candles 🔥</button>
+        </div>
+
+        <div id="wish-status"></div>
+      </div>
+    </section>
+
+    <!-- Section 05: Polaroid Memory Wall -->
+    <section id="memories" class="section-polaroids" aria-labelledby="heading-memories">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">05 · Memory Capsule</span>
+          <h2 id="heading-memories">Moments We Treasure</h2>
+          <p>Tap any polaroid card to flip it over and read the memory story on the back.</p>
+        </div>
+
+        <div class="polaroid-grid reveal-on-scroll" id="polaroid-strip"></div>
+      </div>
+    </section>
+
+    <!-- Section 06: Wish Jar -->
+    <section id="jar" class="section-jar" aria-labelledby="heading-jar">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">06 · Affirmation Capsule</span>
+          <h2 id="heading-jar">The Magic Wish Jar</h2>
+          <p>Whenever you need a reminder of how amazing you are, draw a note from this jar.</p>
+        </div>
+
+        <div class="jar-container reveal-on-scroll">
+          <div class="glass-jar" id="wish-jar" role="button" tabindex="0" aria-label="Tap to pull a wish note" title="Tap to pull a note">
+            🏺
+          </div>
+          <div>
+            <button class="btn btn-primary" id="pull-note-btn">Pull a Note ✨</button>
+          </div>
+
+          <div class="active-note-card" id="active-note-card">
+            <span class="note-counter-badge" id="note-counter">Affirmation</span>
+            <p class="active-note-text" id="note-text">Tap the jar or button to draw your note.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07: 3D Gift Box & VIP Voucher -->
+    <section id="surprise" class="section-gift" aria-labelledby="heading-surprise">
+      <div class="container">
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">07 · One Final Surprise</span>
+          <h2 id="heading-surprise">Unwrap Your Special Gift</h2>
+          <p>Tap the gift box below to untie the ribbon and claim your birthday surprise.</p>
+        </div>
+
+        <div class="gift-stage reveal-on-scroll">
+          <div class="gift-box-3d" id="gift-box-3d" role="button" tabindex="0" aria-label="Tap to unwrap gift box">
+            <div class="gift-bow">🎀</div>
+            <div class="gift-lid">
+              <div class="gift-ribbon-v"></div>
+            </div>
+            <div class="gift-body">
+              <div class="gift-ribbon-v"></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 28px;">
+            <button class="btn btn-primary" id="unwrap-gift-btn">Unwrap Gift 🎁</button>
+          </div>
+        </div>
+
+        <!-- VIP Voucher Card -->
+        <div class="voucher-reveal-card" id="voucher-reveal-card">
+          <div id="voucher-details"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Luxury Footer -->
+  <footer>
+    <div class="container">
+      <h3 class="footer-brand" id="footer-name">Happy Birthday, Sowji</h3>
+      <p class="footer-credit">Handcrafted with endless love & gratitude by <span id="footer-from">Prasanth</span></p>
+      <div class="footer-actions">
+        <button class="btn btn-ghost" id="save-keepsake-btn">Save as Keepsake (Print / PDF) 📄</button>
+        <a href="#letter" class="btn btn-primary">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Ambient Music Widget -->
+  <aside id="floating-music-widget" aria-label="Music player">
+    <button class="music-toggle-btn" aria-label="Play or pause ambient music" title="Toggle Music">
+      <span id="music-icon-play">▶</span>
+      <span id="music-icon-pause" style="display: none;">❚❚</span>
+    </button>
+    <div class="audio-visualizer-bars" aria-hidden="true">
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+    </div>
+    <span class="music-info-label">Bestie Lo-fi Serenade</span>
+    <div class="volume-slider-wrap">
+      <input type="range" id="music-volume-slider" min="0" max="1" step="0.05" value="0.75" aria-label="Music volume">
+    </div>
+  </aside>
+
+  <!-- Modular Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
